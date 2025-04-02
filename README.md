@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Queue Managment System UI / Systeme de Gestion de file d'attente [Frontend]
 
-## Getting Started
+## Presentation du cahier des charges
+- Concevoir et réaliser une application de gestion de file d’attente.
+- Lorsqu’on arrive sur le portail, on sélectionne le service(Seneau,
+Orange, Senelec, Bank …)
+- Une fois le service sélectionné, on choisit la localisation à partir
+d’une liste alimentée depuis le backoffice de l’application.
+- Le choix de la localisation du service redirige directement vers
+une page montrant
+  - Son numéro d’e-ticket (ex: votre numéro de ticket est 445)
+  - Sa position dans la file (ex: vous êtes à la 19 ème position)
+  - Le nombre de personnes devant
+  - Le numéro qui est en train d’être traité
+- A chaque appel d’un agent (qui dispose d’une interface où il peut
+voir le numéro en cours, cliquer sur “client suivant” / “client
+précédent”), le compteur du numéro en cours de traitement est
+incrémenté.
+- L’accès au backoffice par un admin doit permettre d’avoir une vue
+globale sur l’ensemble des files en cours et le numéro de chaque
+file
 
-First, run the development server:
+Passons a la conception du système 
+## Conception
+### Presentation des Acteurs du systeme
+- client: beneficiaire de services
+- agent: gestionnaire/prestataire des services
+- admin: administrateur global/superviseur
+### Evaluation des Besoins fonctionnels
+- selection service
+- choisir localisation
+- appel precedent/suivant (*par un agent*)
+- vue files d'attentes en cours (avec le numero de chaque file)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Modelisation UML (Unified Modeling Language)
+### Diagramme de cas d'utilisation
+![image](https://github.com/user-attachments/assets/c379db42-a53c-4f9c-98ba-b1769a4364c7)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+fig: diagramme de cas d'utilisation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Diagramme de classe
+Les principales classes du systeme sont: 
+- Personne
+- Client
+- Agent
+- Admin
+- Service
+- FileAttente
+- Localisation.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Representons les interactions ou relations existantes entre ces differentes classes:
+- Un Service peut avoir plusieurs Localisations.
+- Une FileAttente est associée à un seul Service mais peut contenir plusieurs Clients.
+- Un Agent peut traiter des clients dans une file d'attente.
+- Un Admin peut voir toutes les files d'attente en cours.
+![conception-image-diagram](https://github.com/sdley/queueManagementSystem-v2/raw/main/img.png)
+fig: relations existantes entre les differentes classes
 
-## Learn More
+NB: *Ces diagrammes peuvent etre détaillés davantage en fonction des besoins.*
 
-To learn more about Next.js, take a look at the following resources:
+## Presentation de l'application
+### Premiere version simplifiee
+- Technologies:
+  - Frontend: Java Server Pages (JSP), CSS
+  - Backend: Spring Boot, MySQL, Spring Data JPA, Hibernate
+- UI: 
+  - Voir README.md du repos `queue-management-system` [ici](https://github.com/sdley/queueManagementSystem)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Seconde version
+- Technologies:
+  - Frontend: Next.js 15, Tailwind CSS
+  - Backend: Spring Boot, MySQL, Spring Data JPA, Hibernate, REST API
+- UI:
+  - En cours de developpement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Copyright ©️
+- [sdley Souleymane DIALLO](https://sdley.github.io/) 2025
+- UAM, Polytech Diamniadio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
