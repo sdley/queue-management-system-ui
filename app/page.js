@@ -1,7 +1,9 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div>My Queue Management System Home page</div>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <h1 className="text-4xl font-bold text-[#b26148] mb-6"
+        >Bienvenue sur l&apos;application de gestion des agents</h1>
+      <p className="text-lg text-gray-700">Sélectionnez une option dans le menu pour commencer.</p>
+    </div>
   );
 }
