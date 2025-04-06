@@ -38,12 +38,16 @@ export default function AgentPage() {
             .catch(console.error);
     };
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (selectedAgent && selectedService && selectedLocalisation) {
+            setIsSubmitting(true); // ← Désactive le bouton
             router.push(`/agent/dashboard?agentId=${selectedAgent}&service=${selectedService}&localisation=${selectedLocalisation}`);
         }
     };
+    
     
 
     return (
@@ -103,17 +107,16 @@ export default function AgentPage() {
 
                 <button
                     type="submit"
-                    className={
-                        !selectedAgent || !selectedService || !selectedLocalisation 
-                        ? "bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed" 
-                        : `bg-[#00a8e2] text-white px-4 py-2 rounded hover:bg-[#008dc1]
-                        transition duration-300 ease-in-out
-                        cursor-pointer shadow-md
-                        `}
-                    
+                    disabled={isSubmitting || !selectedAgent || !selectedService || !selectedLocalisation}
+                    className={`px-4 py-2 rounded transition duration-300 ease-in-out shadow-md
+                        ${!selectedAgent || !selectedService || !selectedLocalisation || isSubmitting 
+                            ? "bg-gray-400 text-white cursor-not-allowed"
+                            : "bg-[#00a8e2] hover:bg-[#008dc1] text-white cursor-pointer"
+                        }`}
                 >
-                    Continuer
+                    {isSubmitting ? "Redirection..." : "Continuer"}
                 </button>
+
             </form>
 
             {/* Liste des agents + Bouton */}
