@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6 text-[#b26148]">
-        Tableau de Bord de l'Administrateur
+        Tableau de Bord Admin
       </h1>
       <h2 className="text-xl font-semibold mb-4">
         Vue d'ensemble des Files d'Attente
