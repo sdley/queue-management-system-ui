@@ -1,6 +1,6 @@
 {
   "name": "queue-management-system-ui",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
